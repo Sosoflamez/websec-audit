@@ -29,10 +29,34 @@ Security Top 10) et privilégie systématiquement la détection non-destructive 
 aucune extraction réelle de données, aucune action destructive, aucun
 brute-force de comptes réels.
 
-## Installation
+## Installation rapide (avec la commande `/soso-secure`)
 
 ```bash
-git clone https://github.com/<votre-compte>/websec-audit.git
+git clone https://github.com/Sosoflamez/websec-audit.git
+cd websec-audit
+./install.sh              # installation globale (~/.claude/)
+# ou : ./install.sh --project   # installation dans le projet courant
+
+pip install -r ~/.claude/skills/websec-audit/requirements.txt
+playwright install chromium
+```
+
+`install.sh` copie le skill dans `~/.claude/skills/websec-audit/` et la
+commande dans `~/.claude/commands/soso-secure.md`. Ensuite, dans Claude
+Code :
+
+```
+/soso-secure https://staging.monapp.test je suis autorisé, c'est mon app
+```
+
+La commande lit `SKILL.md`, confirme l'autorisation si besoin, **lance le
+scan en arrière-plan** (vous pouvez continuer à travailler pendant ce temps)
+et vous résume le rapport dès qu'il est prêt.
+
+## Installation manuelle
+
+```bash
+git clone https://github.com/Sosoflamez/websec-audit.git
 cd websec-audit
 pip install -r requirements.txt
 playwright install chromium
