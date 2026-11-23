@@ -20,11 +20,10 @@ COMMANDS_DIR="$BASE_DIR/commands"
 mkdir -p "$SKILLS_DIR" "$COMMANDS_DIR"
 
 echo "Installation du skill dans $SKILLS_DIR ..."
-cp -r "$SCRIPT_DIR/SKILL.md" "$SCRIPT_DIR/scripts" "$SCRIPT_DIR/requirements.txt" "$SCRIPT_DIR/tests" "$SKILLS_DIR/"
-mkdir -p "$SKILLS_DIR/reports"
+cp -r "$SCRIPT_DIR/skills/websec-audit/." "$SKILLS_DIR/"
 
 echo "Installation de la commande /soso-secure dans $COMMANDS_DIR ..."
-cp "$SCRIPT_DIR/.claude/commands/soso-secure.md" "$COMMANDS_DIR/soso-secure.md"
+cp "$SCRIPT_DIR/commands/soso-secure.md" "$COMMANDS_DIR/soso-secure.md"
 
 echo ""
 echo "Installation terminée."

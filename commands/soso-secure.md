@@ -9,13 +9,20 @@ pendant que le scan tourne.
 
 ## Étape 0 — Localiser le skill
 
-Cherche le dossier du skill (celui qui contient `SKILL.md` et `scripts/run_scan.py`),
+Si ce plugin est installé via le système de plugins Claude Code, la variable
+d'environnement `${CLAUDE_PLUGIN_ROOT}` pointe vers la racine de ce plugin :
+le skill se trouve dans `${CLAUDE_PLUGIN_ROOT}/skills/websec-audit/`
+(SKILL.md + scripts/run_scan.py).
+
+Si cette variable n'est pas disponible (installation manuelle, hors système
+de plugins), cherche un dossier contenant `SKILL.md` et `scripts/run_scan.py`,
 typiquement `~/.claude/skills/websec-audit/` ou `.claude/skills/websec-audit/`
-dans le projet courant. S'il est introuvable, dis-le à l'utilisateur et arrête-toi.
+dans le projet courant. S'il est introuvable, dis-le à l'utilisateur et
+arrête-toi.
 
 ## Étape 1 — Lire SKILL.md
 
-Lis entièrement `SKILL.md` dans ce dossier et applique ses règles, en particulier
+Lis entièrement le `SKILL.md` du skill et applique ses règles, en particulier
 le cadre légal : **tu ne dois jamais lancer le scan sans confirmation explicite
 de l'utilisateur qu'il est autorisé à tester la cible.**
 
@@ -42,22 +49,27 @@ Vérifie que les dépendances sont installées (`pip show requests playwright`).
 Si absentes, installe-les :
 
 ```bash
-pip install -r <chemin_du_skill>/requirements.txt
+pip install -r "<chemin_du_skill>/requirements.txt"
 playwright install chromium
 ```
 
 ## Étape 5 — Lancer le scan EN ARRIÈRE-PLAN
+
+Crée (si besoin) un dossier de sortie dans le répertoire de travail courant
+de l'utilisateur, par exemple `./websec-audit-reports/`, pour que le rapport
+soit accessible là où l'utilisateur travaille (pas enfoui dans le dossier du
+plugin).
 
 Lance `scripts/run_scan.py` avec `--i-have-authorization` et les arguments
 déduits, en tâche de fond (ne bloque pas la conversation), en redirigeant la
 sortie vers un fichier de log, par exemple :
 
 ```bash
-cd <chemin_du_skill> && nohup python3 scripts/run_scan.py \
+python3 "<chemin_du_skill>/scripts/run_scan.py" \
   --target <URL> \
   --i-have-authorization \
   [...autres options...] \
-  --out reports/ > /tmp/websec-audit-$(date +%s).log 2>&1 &
+  --out ./websec-audit-reports/ > /tmp/websec-audit-$(date +%s).log 2>&1 &
 ```
 
 Utilise ton outil Bash en mode arrière-plan (`run_in_background: true` si
@@ -72,7 +84,7 @@ n'est pas disponible dans ce contexte).
 ## Étape 6 — À la fin du scan
 
 Quand le scan se termine (notification automatique, ou vérification manuelle
-du log/du dossier `reports/`), lis le rapport Markdown généré et résume les
+du log/du dossier de sortie), lis le rapport Markdown généré et résume les
 constats à l'utilisateur en langage clair, triés par sévérité (élevée →
 information), avec les recommandations concrètes. Rappelle que chaque constat
 doit être vérifié manuellement avant correction.

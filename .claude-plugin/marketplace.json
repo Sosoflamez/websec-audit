@@ -1,0 +1,15 @@
+{
+  "name": "sosoflamez-websec-audit",
+  "owner": {
+    "name": "Sosthène Houessou",
+    "url": "https://github.com/Sosoflamez"
+  },
+  "plugins": [
+    {
+      "name": "websec-audit",
+      "source": "./",
+      "description": "Audit de sécurité web non-destructif (12 familles de tests OWASP-aligned), lancé via la commande /soso-secure.",
+      "version": "1.0.0"
+    }
+  ]
+}
