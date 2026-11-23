@@ -1,7 +1,7 @@
 {
   "name": "websec-audit",
   "version": "1.0.0",
-  "description": "Audit de sécurité web non-destructif (12 familles de tests OWASP-aligned) : reconnaissance, ports, auth, sessions, IDOR, SQLi, XSS/CSRF, upload, API REST, config serveur, fuite de données, logique métier. Commande /soso-secure.",
+  "description": "Audit de sécurité web non-destructif (12 familles de tests OWASP-aligned) : reconnaissance, ports, auth, sessions, IDOR, SQLi, XSS/CSRF, upload, API REST, config serveur, fuite de données, logique métier. Commande /soso-audit.",
   "author": {
     "name": "Sosthène Houessou",
     "url": "https://github.com/Sosoflamez"

@@ -50,7 +50,7 @@ playwright install chromium
 Ensuite, dans n'importe quel projet, tapez simplement :
 
 ```
-/soso-secure https://staging.monapp.test je suis autorisé, c'est mon app
+/soso-audit https://staging.monapp.test je suis autorisé, c'est mon app
 ```
 
 La commande lit `SKILL.md`, confirme l'autorisation si besoin, **lance le
@@ -70,7 +70,7 @@ playwright install chromium
 ```
 
 `install.sh` copie le skill dans `~/.claude/skills/websec-audit/` et la
-commande dans `~/.claude/commands/soso-secure.md`.
+commande dans `~/.claude/commands/soso-audit.md`.
 
 ## Utilisation en ligne de commande (sans Claude Code)
 
@@ -123,7 +123,7 @@ failles volontaires.
   marketplace.json   # déclare ce dépôt comme marketplace Claude Code
   plugin.json         # manifeste du plugin "websec-audit"
 commands/
-  soso-secure.md       # commande /soso-secure
+  soso-audit.md       # commande /soso-audit
 skills/websec-audit/
   SKILL.md             # méthodologie + garde-fous légaux
   scripts/             # les 12 modules + orchestrateur + rapport

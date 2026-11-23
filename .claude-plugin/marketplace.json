@@ -8,7 +8,7 @@
     {
       "name": "websec-audit",
       "source": "./",
-      "description": "Audit de sécurité web non-destructif (12 familles de tests OWASP-aligned), lancé via la commande /soso-secure.",
+      "description": "Audit de sécurité web non-destructif (12 familles de tests OWASP-aligned), lancé via la commande /soso-audit.",
       "version": "1.0.0"
     }
   ]
